@@ -1,51 +1,69 @@
+DROP DATABASE products;
 CREATE DATABASE products;
 
 USE products;
 
-CREATE TABLE product
+CREATE TABLE products
 (
-	id: number,
-	name: TEXT,
-	slogan: TEXT,
-	description: TEXT,
-	category: TEXT,
-	default_price: TEXT,
-	features_id: INT FOREIGN KEY,
-	created_at: DATE,
-	updated_at: DATE
+	id INT NOT NULL,
+	name TEXT,
+	slogan TEXT,
+	description TEXT,
+	category TEXT,
+	default_price TEXT,
+ feature_id INT,
+	created_at DATE,
+	updated_at DATE,
+	PRIMARY KEY (id)
+ 	FOREIGN KEY (feature_id)
+	 	REFERENCES features(id)
 );
 
 	CREATE TABLE styles
 (
-	default: boolean,
-	name: TEXT,
-	original_price: TEXT,
-	photos_id: INT FOREIGN KEY,
-	sale_price: TEXT,
-	skus_id: INT FOREIGN KEY,
-	style_id: INT,
+	id INT NOT NULL,
+	default1 BOOLEAN,
+	name TEXT,
+	original_price TEXT,
+	photo_id INT,
+	sale_price TEXT,
+	skus_id INT,
+	FOREIGN KEY (photo_id)
+	 REFERENCES photos(id),
+	FOREIGN KEY (skus_id)
+		REFERENCES skus(id),
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE photos
 (
-	photo_id: INT UNIQUE,
-	thumbnail_url: TEXT,
-	url: TEXT,
-	style_id: INT FOREIGN KEY
+	id INT NOT NULL,
+	thumbnail_url TEXT,
+	url TEXT,
+	style_id INT,
+	FOREIGN KEY (style_id)
+		REFERENCES styles(id),
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE features
 (
-	feature: TEXT,
-	value: TEXT,
-	product_id: INT FOREIGN KEY,
-	feature_id: INT UNIQUE
+	id INT NOT NULL,
+	feature TEXT,
+	value TEXT,
+	product_id INT,
+	FOREIGN KEY (product_id)
+		REFERENCES products(id),
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE skus
 (
-	sku: INT UNIQUE,
-	quantity: INT,
-	size: INT,
-	style_id: INT FOREIGN KEY
+	id INT NOT NULL,
+	quantity INT,
+	size INT,
+	style_id INT,
+	FOREIGN KEY (style_id)
+		REFERENCES styles(id),
+	PRIMARY KEY (id)
 );
