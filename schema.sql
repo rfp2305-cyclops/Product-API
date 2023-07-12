@@ -1,7 +1,3 @@
-DROP DATABASE products;
-CREATE DATABASE products;
-
-USE products;
 
 CREATE TABLE products
 (
@@ -11,10 +7,10 @@ CREATE TABLE products
 	description TEXT,
 	category TEXT,
 	default_price TEXT,
- feature_id INT,
-	created_at DATE,
-	updated_at DATE,
-	PRIMARY KEY (id)
+  feature_id INT,
+	created_at DATE DEFAULT CURRENT_TIMESTAMP,
+	updated_at DATE DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
  	FOREIGN KEY (feature_id)
 	 	REFERENCES features(id)
 );
@@ -22,7 +18,7 @@ CREATE TABLE products
 	CREATE TABLE styles
 (
 	id INT NOT NULL,
-	default1 BOOLEAN,
+	default_style BOOLEAN,
 	name TEXT,
 	original_price TEXT,
 	photo_id INT,
