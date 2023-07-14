@@ -15,7 +15,7 @@ app.get("/healthcheck", (req, res) => {
 app.use("/products", router);
 //returns all products qrystr "SELECT * FROM products"
 
-// app.use("/products/:product_id");
+//app.use("/products/:product_id", router);
 // //returns specific product qrystr "SELECT * FROM products WHERE product_id=req.product_id" "SELECT * FROM features WHERE product_id = product_id"
 
 // app.use("/products/:product_id/styles");
