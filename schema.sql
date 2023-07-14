@@ -7,12 +7,9 @@ CREATE TABLE products
 	description TEXT,
 	category TEXT,
 	default_price TEXT,
-  feature_id INT,
 	created_at DATE DEFAULT CURRENT_TIMESTAMP,
 	updated_at DATE DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
- 	FOREIGN KEY (feature_id)
-	 	REFERENCES features(id)
 );
 
 	CREATE TABLE styles
@@ -21,13 +18,10 @@ CREATE TABLE products
 	default_style BOOLEAN,
 	name TEXT,
 	original_price TEXT,
-	photo_id INT,
 	sale_price TEXT,
-	skus_id INT,
-	FOREIGN KEY (photo_id)
-	 REFERENCES photos(id),
-	FOREIGN KEY (skus_id)
-		REFERENCES skus(id),
+	product_id INT,
+	FOREIGN KEY (product_id)
+		REFERENCES products(id),
 	PRIMARY KEY (id)
 );
 
@@ -61,5 +55,12 @@ CREATE TABLE skus
 	style_id INT,
 	FOREIGN KEY (style_id)
 		REFERENCES styles(id),
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE related (
+	id INT,
+	current_product_id INT,
+	related_product_id INT,
 	PRIMARY KEY (id)
 );

@@ -22,3 +22,8 @@ COPY features(id, product_id, feature, value)
 FROM '/Users/hollystefan/Desktop/Hackreactor/Course/SDC/Product-API/seedData/features.csv'
 DELIMITER ','
 CSV HEADER;
+
+COPY related(id, current_product_id, related_product_id)
+FROM '/Users/hollystefan/Desktop/Hackreactor/Course/SDC/Product-API/seedData/related.csv'
+DELIMITER ','
+CSV HEADER;
