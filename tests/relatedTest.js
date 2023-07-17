@@ -21,5 +21,5 @@ export default function () {
     surname: 'ipsum',
   });
   const headers = { 'Content-Type': 'application/json' };
-  http.post('https://httpbin.test.k6.io/products/', payload, { headers });
+  http.post('https://httpbin.test.k6.io/products/2/related', payload, { headers });
 }
