@@ -1,4 +1,3 @@
-//practice test
 const http = require('k6/http');
 const { check, sleep } = require('k6');
 
@@ -10,7 +9,7 @@ export const options = {
 };
 
 export default () => {
-  const urlRes = http.req('https://localhost:3000/products/1');
+  const urlRes = http.req('https://localhost:3000/products/1/styles');
   sleep(1);
 }; */
 
@@ -26,7 +25,7 @@ export const options = {
 };
 
 export default () => {
-  const urlRes = http.req('https://localhost:3000/products/103');
+  const urlRes = http.req('https://localhost:3000/products/103/styles');
   sleep(1);
 }; */
 
@@ -42,6 +41,6 @@ export const options = {
 };
 
 export default () => {
-  const urlRes = http.req('https://localhost:3000/products/103');
+  const urlRes = http.req('https://localhost:3000/products/103/styles');
   sleep(1);
 };
