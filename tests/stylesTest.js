@@ -1,25 +1,46 @@
-//practice test
-
 const http = require('k6/http');
+const { check, sleep } = require('k6');
 
+//smoke test
+/*
 export const options = {
-  scenarios: {
-    my_scenario1: {
-      executor: 'constant-arrival-rate',
-      duration: '30s', // total duration
-      preAllocatedVUs: 50, // to allocate runtime resources     preAll
-
-      rate: 50, // number of constant iterations given `timeUnit`
-      timeUnit: '1s',
-    },
-  },
+  vus: 3, // Key for Smoke test. Keep it at 2, 3, max 5 VUs
+  duration: '1m', // This can be shorter or just a few iterations
 };
 
-export default function () {
-  const payload = JSON.stringify({
-    name: 'lorem',
-    surname: 'ipsum',
-  });
-  const headers = { 'Content-Type': 'application/json' };
-  http.post('https://httpbin.test.k6.io/products/2/styles', payload, { headers });
-}
+export default () => {
+  const urlRes = http.req('https://localhost:3000/products/1/styles');
+  sleep(1);
+}; */
+
+// load test
+/*
+export const options = {
+  // Key configurations for avg load test in this section
+  stages: [
+    { duration: '5m', target: 100 }, // traffic ramp-up from 1 to 100 users over 5 minutes.
+    { duration: '30m', target: 100 }, // stay at 100 users for 10 minutes
+    { duration: '5m', target: 0 }, // ramp-down to 0 users
+  ],
+};
+
+export default () => {
+  const urlRes = http.req('https://localhost:3000/products/103/styles');
+  sleep(1);
+}; */
+
+//stress test
+
+export const options = {
+  // Key configurations for Stress in this section
+  stages: [
+    { duration: '10m', target: 200 }, // traffic ramp-up from 1 to a higher 200 users over 10 minutes.
+    { duration: '30m', target: 200 }, // stay at higher 200 users for 10 minutes
+    { duration: '5m', target: 0 }, // ramp-down to 0 users
+  ],
+};
+
+export default () => {
+  const urlRes = http.req('https://localhost:3000/products/103/styles');
+  sleep(1);
+};
