@@ -1,6 +1,10 @@
 const http = require('k6/http');
 const { check, sleep } = require('k6');
 
+const randomize = function() {
+  return Math.floor(Math.random() * 1000);
+}
+
 //smoke test
 /*
 export const options = {
@@ -41,6 +45,6 @@ export const options = {
 };
 
 export default () => {
-  const urlRes = http.req('https://localhost:3000/products/');
+  const urlRes = http.req(`https://localhost:3000/products/${randomize()}`);
   sleep(1);
 };
