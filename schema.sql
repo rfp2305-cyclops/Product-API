@@ -9,7 +9,7 @@ CREATE TABLE products
 	default_price TEXT,
 	created_at DATE DEFAULT CURRENT_TIMESTAMP,
 	updated_at DATE DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (id),
+	PRIMARY KEY (id)
 );
 
 	CREATE TABLE styles
@@ -51,7 +51,7 @@ CREATE TABLE skus
 (
 	id INT NOT NULL,
 	quantity INT,
-	size INT,
+	size TEXT,
 	style_id INT,
 	FOREIGN KEY (style_id)
 		REFERENCES styles(id),

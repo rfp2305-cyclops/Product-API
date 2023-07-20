@@ -34,7 +34,7 @@ export default () => {
 }; */
 
 //stress test
-
+/*
 export const options = {
   // Key configurations for Stress in this section
   stages: [
@@ -47,4 +47,4 @@ export const options = {
 export default () => {
   const urlRes = http.req(`https://localhost:3000/products/${randomize()}`);
   sleep(1);
-};
+};*/

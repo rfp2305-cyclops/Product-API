@@ -4,12 +4,12 @@ const { check, sleep } = require('k6');
 
 //smoke test
 
-export const options = {
+export const options1 = {
   vus: 3, // Key for Smoke test. Keep it at 2, 3, max 5 VUs
   duration: '1m', // This can be shorter or just a few iterations
 };
 
-export default () => {
+export const default1 () => {
   const urlRes = http.req('https://localhost:3000/products/1');
   sleep(1);
 };
@@ -31,7 +31,7 @@ export default () => {
 }; */
 
 //stress test
-
+/*
 export const options = {
   // Key configurations for Stress in this section
   stages: [

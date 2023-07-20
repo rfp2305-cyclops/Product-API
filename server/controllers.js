@@ -2,7 +2,7 @@ const db = require("./connection.js");
 
 module.exports = {
   products: async (req, res) => {
-    const qrystr = `SELECT * FROM products WHERE id = 1`;
+    const qrystr = `SELECT * FROM products`;
     try {
       const client = await db.pool.connect();
       const products = await client.query(qrystr);
@@ -14,14 +14,14 @@ module.exports = {
   },
 
   product: async (req, res) => {
-    const productId = req.query.product_id;
+    const productId = req.params.product_id;
     const qrystr = `SELECT jsonb_build_object('id', id, 'name', name, 'slogan', slogan, 'description', description, 'category', category, 'default_price', default_price,
       'features', (SELECT jsonb_agg(jsonb_build_object('feature', feature, 'value', value))
-      FROM features WHERE product_id=${productId}))
-    FROM productS WHERE id=${productId}`;
+      FROM features WHERE product_id=$1))
+    FROM productS WHERE id=$1`;
     try {
       const client = await db.pool.connect();
-      const product = await client.query(qrystr);
+      const product = await client.query(qrystr, [productId]);
       client.release();
       res.status(200).send(product);
     } catch (err) {
