@@ -6,7 +6,7 @@ const router = require("./server/routes.js");
 app.use(express.json());
 // app.use(morgan("dev"));
 
-const PORT = 3000 || process.env.PORT;
+const PORT = 3001 || process.env.PORT;
 
 app.get("/healthcheck", (req, res) => {
   res.send("you are connected");
